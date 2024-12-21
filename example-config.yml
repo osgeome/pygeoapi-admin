@@ -1,0 +1,762 @@
+# =================================================================
+#
+# Authors: Tom Kralidis <tomkralidis@gmail.com>
+#
+# Copyright (c) 2020 Tom Kralidis
+#
+# Permission is hereby granted, free of charge, to any person
+# obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without
+# restriction, including without limitation the rights to use,
+# copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following
+# conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# =================================================================
+
+server:
+    bind:
+        host: 0.0.0.0
+        port: 5001
+    url: http://0.0.0.0:5001/
+    mimetype: application/json; charset=UTF-8
+    encoding: utf-8
+    gzip: false
+    cors: true
+    languages:
+        # Supported languages
+        - en-US
+        - ar-EG
+        - bs-BA
+        - de-DE
+        - es-ES
+        - fr-FR
+        - sr-RS
+    pretty_print: true
+    limit: 10
+    map:
+        url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+    admin: true
+
+logging:
+    level: ERROR
+
+metadata:
+    identification:
+        title:
+            en: pygeoapi default instance
+            ar: النسخة الافتراضية من pygeoapi
+            bs: pygeoapi zadani primjer
+            de: pygeoapi Standardinstanz
+            es: instancia predeterminada de pygeoapi
+            fr: instance par défaut de pygeoapi
+            sr: pygeoapi podrazumevana instanca
+        description:
+            en: pygeoapi provides an API to geospatial data
+            ar: يوفر pygeoapi واجهة برمجة تطبيقات للبيانات الجغرافية
+            bs: pygeoapi pruža API za geografske podatke
+            de: pygeoapi bietet eine API für Geodaten
+            es: pygeoapi proporciona una API para datos geoespaciales
+            fr: pygeoapi fournit une API pour les données géospatiales
+            sr: pygeoapi pruža API za geospatialne podatke
+        keywords:
+            en:
+                - geospatial
+                - data
+                - api
+            ar:
+                - جغرافية
+                - بيانات
+                - واجهة برمجة التطبيقات
+            bs:
+                - geospatialni
+                - podaci
+                - api
+            de:
+                - Geodaten
+                - Daten
+                - API
+            es:
+                - geoespacial
+                - datos
+                - api
+            fr:
+                - géospatial
+                - données
+                - api
+            sr:
+                - geospatialni
+                - podaci
+                - api
+        keywords_type: theme
+        terms_of_service: https://creativecommons.org/licenses/by/4.0/
+        url: https://example.org
+    license:
+        name:
+            en: CC-BY 4.0 license
+            ar: رخصة CC-BY 4.0
+            bs: CC-BY 4.0 licenca
+            de: CC-BY 4.0 Lizenz
+            es: Licencia CC-BY 4.0
+            fr: Licence CC-BY 4.0
+            sr: CC-BY 4.0 licenca
+        url: https://creativecommons.org/licenses/by/4.0/
+    provider:
+        name:
+            en: Organization Name
+            ar: اسم المنظمة
+            bs: Naziv organizacije
+            de: Organisationsname
+            es: Nombre de la organización
+            fr: Nom de l'organisation
+            sr: Naziv organizacije
+        url: https://pygeoapi.io
+    contact:
+        name: Lastname, Firstname
+        position:
+            en: Position Title
+            ar: المسمى الوظيفي
+            bs: Pozicija
+            de: Positionsbezeichnung
+            es: Título del puesto
+            fr: Intitulé du poste
+            sr: Naziv pozicije
+        address: Mailing Address
+        city: City
+        stateorprovince: Administrative Area
+        postalcode: Zip or Postal Code
+        country: Country
+        phone: +xx-xxx-xxx-xxxx
+        fax: +xx-xxx-xxx-xxxx
+        email: you@example.org
+        url: Contact URL
+        hours:
+            en: Mo-Fr 08:00-17:00
+            ar: الإثنين-الجمعة 08:00-17:00
+            bs: Pon-Pet 08:00-17:00
+            de: Mo-Fr 08:00-17:00
+            es: Lun-Vie 08:00-17:00
+            fr: Lun-Ven 08:00-17:00
+            sr: Pon-Pet 08:00-17:00
+        instructions:
+            en: During hours of service. Off on weekends.
+            ar: خلال ساعات الخدمة. عطلة في عطلات نهاية الأسبوع.
+            bs: Tokom radnog vremena. Slobodno vikendom.
+            de: Während der Servicezeiten. Frei am Wochenende.
+            es: Durante el horario de servicio. Libre los fines de semana.
+            fr: Pendant les heures de service. Fermé le week-end.
+            sr: Tokom radnog vremena. Slobodno vikendom.
+        role:
+            en: pointOfContact
+            ar: نقطة الاتصال
+            bs: kontakt tačka
+            de: Ansprechpartner
+            es: punto de contacto
+            fr: point de contact
+            sr: kontakt tačka
+
+resources:
+    obs:
+        type: collection
+        title:
+            en: Observations
+            ar: ملاحظات
+            bs: Promatranja
+            de: Beobachtungen
+            es: Observaciones
+            fr: Observations
+            sr: Promatranja
+        description:
+            en: My awesome observations
+            ar: ملاحظاتي الرائعة
+            bs: Moje sjajne promatranja
+            de: Meine großartigen Beobachtungen
+            es: Mis increíbles observaciones
+            fr: Mes observations géniales
+            sr: Moja sjajna promatranja
+        keywords:
+            en:
+                - observations
+                - monitoring
+            ar:
+                - ملاحظات
+                - مراقبة
+            bs:
+                - promatranja
+                - monitoring
+            de:
+                - Beobachtungen
+                - Überwachung
+            es:
+                - observaciones
+                - monitoreo
+            fr:
+                - observations
+                - surveillance
+            sr:
+                - promatranja
+                - nadzor
+        linked-data:
+            context:
+                - datetime: https://schema.org/DateTime
+                - vocab: https://example.com/vocab#
+                  stn_id: "vocab:stn_id"
+                  value: "vocab:value"
+        links:
+            - type: text/csv
+              rel: canonical
+              title:
+                  en: Data
+                  ar: بيانات
+                  bs: Podaci
+                  de: Daten
+                  es: Datos
+                  fr: Données
+                  sr: Podaci
+              href: https://github.com/mapserver/mapserver/blob/branch-7-0/msautotest/wxs/data/obs.csv
+              hreflang: ar-EG
+            - type: text/csv
+              rel: alternate
+              title:
+                  en: Data
+                  ar: بيانات
+                  bs: Podaci
+                  de: Daten
+                  es: Datos
+                  fr: Données
+                  sr: Podaci
+              href: https://raw.githubusercontent.com/mapserver/mapserver/branch-7-0/msautotest/wxs/data/obs.csv
+              hreflang: ar-EG
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+            temporal:
+                begin: 2000-10-30T18:24:39Z
+                end: 2007-10-30T08:57:29Z
+        providers:
+            - type: feature
+              name: CSV
+              data: tests/data/obs.csv
+              id_field: id
+              geometry:
+                  x_field: long
+                  y_field: lat
+
+    lakes:
+        type: collection
+        title:
+            en: Large Lakes
+            ar: البحيرات الكبيرة
+            bs: Velika jezera
+            de: Große Seen
+            es: Grandes Lagos
+            fr: Grands Lacs
+            sr: Velika jezera
+        description:
+            en: Lakes of the world, public domain
+            ar: البحيرات العالمية، الملكية العامة
+            bs: Jezera svijeta, javno vlasništvo
+            de: Seen der Welt, gemeinfrei
+            es: Lagos del mundo, dominio público
+            fr: Lacs du monde, domaine public
+            sr: Jezera sveta, javno vlasništvo
+        keywords:
+            en:
+                - lakes
+                - water bodies
+            ar:
+                - بحيرات
+                - مسطحات مائية
+            bs:
+                - jezera
+                - vodene površine
+            de:
+                - Seen
+                - Gewässer
+            es:
+                - lagos
+                - cuerpos de agua
+            fr:
+                - lacs
+                - masses d'eau
+            sr:
+                - jezera
+                - vodene površine
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: http://www.naturalearthdata.com/
+              hreflang: ar-EG
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+            temporal:
+                begin: 2011-11-11T11:11:11Z
+                end: null
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: tests/data/ne_110m_lakes.geojson
+              id_field: id
+              title_field: name
+
+    mapserver_world_map:
+        type: collection
+        title:
+            en: Experimental World Map from MapServer
+            ar: خريطة العالم التجريبية من MapServer
+            bs: Eksperimentalna svjetska karta iz MapServera
+            de: Experimentelle Weltkarte von MapServer
+            es: Mapa mundial experimental de MapServer
+            fr: Carte du monde expérimentale de MapServer
+            sr: Eksperimentalna svetska mapa iz MapServera
+        description:
+            en: Experimental World Map from MapServer
+            ar: خريطة العالم التجريبية من MapServer
+            bs: Eksperimentalna svjetska karta iz MapServera
+            de: Experimentelle Weltkarte von MapServer
+            es: Mapa mundial experimental de MapServer
+            fr: Carte du monde expérimentale de MapServer
+            sr: Eksperimentalna svetska mapa iz MapServera
+        keywords:
+            en:
+                - MapServer
+                - World Map
+            ar:
+                - MapServer
+                - خريطة العالم
+            bs:
+                - MapServer
+                - Svjetska karta
+            de:
+                - MapServer
+                - Weltkarte
+            es:
+                - MapServer
+                - Mapa mundial
+            fr:
+                - MapServer
+                - Carte du monde
+            sr:
+                - MapServer
+                - Svetska mapa
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://demo.mapserver.org
+              hreflang: ar-EG
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: map
+              name: WMSFacade
+              data: https://demo.mapserver.org/cgi-bin/msautotest
+              options:
+                  layer: world_latlong
+                  style: default
+              format:
+                  name: png
+                  mimetype: image/png
+
+    gdps-temperature:
+        type: collection
+        title:
+            en: Sample from the Global Deterministic Prediction System
+            ar: عينة من نظام التنبؤ العالمي الحتمي
+            bs: Uzorak iz Globalnog Determinističkog Predikcionog Sistema
+            de: Beispiel aus dem Globalen Deterministischen Vorhersagesystem
+            es: Muestra del Sistema Global de Predicción Determinista
+            fr: Exemple du Système de Prédiction Déterministe Global
+            sr: Uzorak iz Globalnog Determinističkog Predikcionog Sistema
+        description:
+            en: Sample from the Global Deterministic Prediction System
+            ar: عينة من نظام التنبؤ العالمي الحتمي
+            bs: Uzorak iz Globalnog Determinističkog Predikcionog Sistema
+            de: Beispiel aus dem Globalen Deterministischen Vorhersagesystem
+            es: Muestra del Sistema Global de Predicción Determinista
+            fr: Exemple du Système de Prédiction Déterministe Global
+            sr: Uzorak iz Globalnog Determinističkog Predikcionog Sistema
+        keywords:
+            en:
+                - gdps
+                - global
+            ar:
+                - gdps
+                - عالمي
+            bs:
+                - gdps
+                - globalno
+            de:
+                - gdps
+                - global
+            es:
+                - gdps
+                - global
+            fr:
+                - gdps
+                - global
+            sr:
+                - gdps
+                - globalno
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://eccc-msc.github.io/open-data/msc-data/nwp_gdps/readme_gdps_en
+              hreflang: ar-EG
+        providers:
+            - type: coverage
+              name: rasterio
+              data: tests/data/CMC_glb_TMP_TGL_2_latlon.15x.15_2020081000_P000.grib2
+              options:
+                  DATA_ENCODING: COMPLEX_PACKING
+              format:
+                  name: GRIB
+                  mimetype: application/x-grib2
+
+    test-data:
+        type: stac-collection
+        title:
+            en: pygeoapi Test Data
+            ar: بيانات pygeoapi التجريبية
+            bs: Pygeoapi test podaci
+            de: pygeoapi Testdaten
+            es: Datos de prueba de pygeoapi
+            fr: Données de test pygeoapi
+            sr: Pygeoapi test podaci
+        description:
+            en: pygeoapi test data
+            ar: بيانات pygeoapi التجريبية
+            bs: Pygeoapi test podaci
+            de: pygeoapi Testdaten
+            es: Datos de prueba de pygeoapi
+            fr: Données de test pygeoapi
+            sr: Pygeoapi test podaci
+        keywords:
+            en:
+                - poi
+                - portugal
+            ar:
+                - نقاط الاهتمام
+                - البرتغال
+            bs:
+                - poi
+                - portugal
+            de:
+                - POI
+                - Portugal
+            es:
+                - puntos de interés
+                - portugal
+            fr:
+                - points d'intérêt
+                - portugal
+            sr:
+                - poi
+                - portugal
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://github.com/geopython/pygeoapi/tree/master/tests/data
+              hreflang: ar-EG
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: stac
+              name: FileSystem
+              data: tests/data
+              file_types:
+                  - .gpkg
+                  - .sqlite
+                  - .csv
+                  - .grib2
+                  - .tif
+                  - .shp
+
+    canada-metadata:
+        type: collection
+        title:
+            en: Open Canada Sample Data
+            ar: بيانات تجريبية لكندا المفتوحة
+            bs: Uzorak otvorenih kanadskih podataka
+            de: Beispieldaten von Open Canada
+            es: Datos de muestra de Canadá Abierto
+            fr: Données d'exemple de Canada Ouvert
+            sr: Uzorak otvorenih kanadskih podataka
+        description:
+            en: Sample metadata records from open.canada.ca
+            ar: سجلات بيانات وصفية تجريبية من open.canada.ca
+            bs: Uzorci metapodataka sa open.canada.ca
+            de: Beispieldatensätze von open.canada.ca
+            es: Registros de metadatos de muestra de open.canada.ca
+            fr: Exemples de métadonnées de open.canada.ca
+            sr: Uzorci metapodataka sa open.canada.ca
+        keywords:
+            en:
+                - canada
+                - open data
+            ar:
+                - كندا
+                - بيانات مفتوحة
+            bs:
+                - kanada
+                - otvoreni podaci
+            de:
+                - Kanada
+                - offene Daten
+            es:
+                - canadá
+                - datos abiertos
+            fr:
+                - canada
+                - données ouvertes
+            sr:
+                - kanada
+                - otvoreni podaci
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://open.canada.ca/en/open-data
+              hreflang: ar-EG
+            - type: text/html
+              rel: alternate
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://ouvert.canada.ca/fr/donnees-ouvertes
+              hreflang: fr-FR
+        extents:
+            spatial:
+                bbox: [-180, -90, 180, 90]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: record
+              name: TinyDBCatalogue
+              data: tests/data/open.canada.ca/sample-records.tinydb
+              id_field: externalId
+              time_field: recordCreated
+              title_field: title
+
+    bathingwater-estonia:
+        type: collection
+        title:
+            en: Bathing Water Sources
+            ar: مصادر مياه الاستحمام
+            bs: Izvori za kupanje
+            de: Badegewässerquellen
+            es: Fuentes de agua para baño
+            fr: Sources d'eau de baignade
+            sr: Izvori za kupanje
+        description:
+            en: Bathing water sources data used by water supply systems under the supervision of the Health Council from the Water Health Information System.
+            ar: بيانات مصادر مياه الاستحمام المستخدمة من قبل أنظمة إمدادات المياه تحت إشراف مجلس الصحة من نظام معلومات الصحة المائية.
+            bs: Podaci o izvorima za kupanje korišteni od strane sistema snabdijevanja vodom pod nadzorom Saveta za zdravlje iz Sistema informacija o zdravstvenoj vodi.
+            de: Daten zu Badegewässerquellen, die von Wasserversorgungssystemen unter der Aufsicht des Gesundheitsrates aus dem Wasser-Gesundheitsinformationssystem verwendet werden.
+            es: Datos de fuentes de agua para baño utilizados por sistemas de suministro de agua bajo la supervisión del Consejo de Salud desde el Sistema de Información de Salud del Agua.
+            fr: Données sur les sources d'eau de baignade utilisées par les systèmes d'approvisionnement en eau sous la supervision du Conseil de la santé à partir du Système d'information sur la santé de l'eau.
+            sr: Podaci o izvorima za kupanje korišteni od strane sistema snabdijevanja vodom pod nadzorom Saveta za zdravlje iz Sistema informacija o zdravstvenoj vodi.
+        keywords:
+            en:
+                - water
+                - water bodies
+                - drilled wells
+                - surface water
+                - groundwater
+                - environmental health
+                - health
+                - bathing water
+            ar:
+                - ماء
+                - مسطحات مائية
+                - آبار محفورة
+                - مياه سطحية
+                - مياه جوفية
+                - الصحة البيئية
+                - صحة
+                - مياه الاستحمام
+            bs:
+                - voda
+                - vodene površine
+                - bušene bunare
+                - površinska voda
+                - podzemna voda
+                - ekološko zdravlje
+                - zdravlje
+                - voda za kupanje
+            de:
+                - Wasser
+                - Gewässer
+                - gebohrte Brunnen
+                - Oberflächenwasser
+                - Grundwasser
+                - Umweltgesundheit
+                - Gesundheit
+                - Badegewässer
+            es:
+                - agua
+                - cuerpos de agua
+                - pozos perforados
+                - agua superficial
+                - agua subterránea
+                - salud ambiental
+                - salud
+                - agua para baño
+            fr:
+                - eau
+                - masses d'eau
+                - puits forés
+                - eau de surface
+                - eau souterraine
+                - santé environnementale
+                - santé
+                - eau de baignade
+            sr:
+                - voda
+                - vodene površine
+                - bušene bunare
+                - površinska voda
+                - podzemna voda
+                - ekološko zdravlje
+                - zdravlje
+                - voda za kupanje
+        links:
+            - type: text/html
+              rel: canonical
+              title:
+                  en: Information
+                  ar: معلومات
+                  bs: Informacije
+                  de: Informationen
+                  es: Información
+                  fr: Informations
+                  sr: Informacije
+              href: https://avaandmed.eesti.ee/api/datasets/slug/supluskohad
+              hreflang: ar-EG
+        extents:
+            spatial:
+                bbox:
+                    [
+                        22.2290936066586440,
+                        57.6912449743385451,
+                        28.2024877654160555,
+                        59.6097269178904412,
+                    ]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+            temporal:
+                begin: null
+                end: null
+        providers:
+            - type: feature
+              name: GeoJSON
+              data: tests/data/tartu/bathingwater-estonia.geojson
+              id_field: id
+              styles:
+                  - name: water-bodies
+                    title:
+                        en: SLD Style for Water Bodies
+                        ar: نمط SLD للمسطحات المائية
+                        bs: SLD stil za vodene površine
+                        de: SLD-Stil für Gewässer
+                        es: Estilo SLD para cuerpos de agua
+                        fr: Style SLD pour masses d'eau
+                        sr: SLD stil za vodene površine
+                    style:
+                        type: sld
+                        version: 1.1
+                        data: tests/styles/bathing_water_sources.sld
+            - type: tile
+              name: MVT-tippecanoe
+              data: tests/data/tiles_es/ # local directory tree
+              options:
+                  zoom:
+                      min: 0
+                      max: 16
+              format:
+                  name: pbf
+                  mimetype: application/vnd.mapbox-vector-tile
+              styles:
+                  - name: mapbox-style-test
+                    title:
+                        en: Style Title
+                        ar: عنوان النمط
+                        bs: Naslov stila
+                        de: Stil Titel
+                        es: Título del estilo
+                        fr: Titre du style
+                        sr: Naslov stila
+                    style:
+                        type: mapbox
+                        data: tests/styles/bathing_water_sources.json
+
+    hello-world:
+        type: process
+        processor:
+            name: HelloWorld

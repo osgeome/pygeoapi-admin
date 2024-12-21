@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html, body {
+  @apply tw-m-0 tw-p-0;
+  @apply tw-min-h-screen;
+}
+
+#app {
+  @apply tw-w-full tw-min-h-screen;
+  @apply tw-flex tw-flex-col;
+}
+
+.v-application {
+  @apply tw-bg-gray-50;
+} */
