@@ -26,13 +26,13 @@
                   persistent-hint
                   :rules="[
                     (v) => !!v || 'Port is required',
-                    (v) => v > 0 && v < 65536 || 'Port must be between 1 and 65535'
+                    (v) => (v > 0 && v < 65536) || 'Port must be between 1 and 65535',
                   ]"
                 />
                 <v-text-field
                   v-model="formData.url"
                   label="Server URL"
-                  hint="The base URL of your PyGeoAPI server"
+                  hint="The base URL of your pygeoapi server"
                   persistent-hint
                   :rules="[(v) => !!v || 'Server URL is required']"
                 />
@@ -106,7 +106,10 @@
                   persistent-hint
                   :disabled="!formData.admin.enabled"
                   :rules="[
-                    (v) => !formData.admin.enabled || !!v || 'Username is required when admin is enabled'
+                    (v) =>
+                      !formData.admin.enabled ||
+                      !!v ||
+                      'Username is required when admin is enabled',
                   ]"
                 />
                 <v-text-field
@@ -117,7 +120,10 @@
                   persistent-hint
                   :disabled="!formData.admin.enabled"
                   :rules="[
-                    (v) => !formData.admin.enabled || !!v || 'Password is required when admin is enabled'
+                    (v) =>
+                      !formData.admin.enabled ||
+                      !!v ||
+                      'Password is required when admin is enabled',
                   ]"
                 />
                 <v-text-field
@@ -128,7 +134,10 @@
                   persistent-hint
                   :disabled="!formData.admin.enabled"
                   :rules="[
-                    (v) => !formData.admin.enabled || !!v || 'JWT secret is required when admin is enabled'
+                    (v) =>
+                      !formData.admin.enabled ||
+                      !!v ||
+                      'JWT secret is required when admin is enabled',
                   ]"
                 />
                 <v-text-field
@@ -139,8 +148,11 @@
                   persistent-hint
                   :disabled="!formData.admin.enabled"
                   :rules="[
-                    (v) => !formData.admin.enabled || !!v || 'JWT expiration is required when admin is enabled',
-                    (v) => !formData.admin.enabled || v > 0 || 'Expiration must be greater than 0'
+                    (v) =>
+                      !formData.admin.enabled ||
+                      !!v ||
+                      'JWT expiration is required when admin is enabled',
+                    (v) => !formData.admin.enabled || v > 0 || 'Expiration must be greater than 0',
                   ]"
                 />
               </div>
@@ -172,11 +184,7 @@
           <!-- Actions -->
           <div class="tw-flex tw-justify-between tw-gap-4 tw-mt-6">
             <div class="tw-flex tw-items-center tw-gap-2">
-              <v-btn
-                color="warning"
-                :disabled="!hasChanges"
-                @click="resetForm"
-              >
+              <v-btn color="warning" :disabled="!hasChanges" @click="resetForm">
                 Reset Changes
               </v-btn>
             </div>
@@ -211,7 +219,7 @@ const initialData = ref<ServerConfig | null>(null)
 const formData = ref<ServerConfig>({
   bind: {
     host: '0.0.0.0',
-    port: 5000
+    port: 5000,
   },
   url: 'http://localhost:5000',
   mimetype: 'application/json',
@@ -226,21 +234,21 @@ const formData = ref<ServerConfig>({
     password: '',
     jwt: {
       secret: '',
-      expiration: 24
-    }
+      expiration: 24,
+    },
   },
   logging: {
     level: 'INFO',
-    logfile: '/tmp/pygeoapi.log'
-  }
+    logfile: '/tmp/pygeoapi.log',
+  },
 })
 
 const loadFormData = () => {
   if (!configStore.currentJson?.server) return
-  
+
   // Deep clone to avoid reference issues
   initialData.value = JSON.parse(JSON.stringify(configStore.currentJson.server))
-  
+
   // Ensure admin and jwt objects exist with default values
   const serverConfig = {
     ...initialData.value,
@@ -250,12 +258,12 @@ const loadFormData = () => {
       password: '',
       jwt: {
         secret: '',
-        expiration: 24
+        expiration: 24,
       },
-      ...initialData.value?.admin
-    }
+      ...initialData.value?.admin,
+    },
   }
-  
+
   Object.assign(formData.value, serverConfig)
 }
 
@@ -288,7 +296,11 @@ const saveConfig = async () => {
 }
 
 // Watch for store changes
-watch(() => configStore.currentJson, () => {
-  loadFormData()
-}, { immediate: true })
+watch(
+  () => configStore.currentJson,
+  () => {
+    loadFormData()
+  },
+  { immediate: true },
+)
 </script>

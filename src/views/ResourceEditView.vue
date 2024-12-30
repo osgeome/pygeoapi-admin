@@ -5,7 +5,7 @@
         <h1 class="tw-text-2xl tw-font-bold">
           {{ isNew ? 'New Resource' : `Edit ${resourceId}` }}
         </h1>
-        <p class="tw-text-gray-600">Configure your PyGeoAPI resource</p>
+        <p class="tw-text-gray-600">Configure your pygeoapi resource</p>
       </div>
     </div>
 
@@ -24,8 +24,8 @@
                   hint="Unique identifier for this resource"
                   persistent-hint
                   :rules="[
-                    v => !!v || 'ID is required',
-                    v => !existingResources.includes(v) || 'ID already exists'
+                    (v) => !!v || 'ID is required',
+                    (v) => !existingResources.includes(v) || 'ID already exists',
                   ]"
                 />
                 <v-select
@@ -34,7 +34,7 @@
                   :items="['collection', 'process']"
                   hint="Resource type"
                   persistent-hint
-                  :rules="[v => !!v || 'Type is required']"
+                  :rules="[(v) => !!v || 'Type is required']"
                 />
               </div>
             </div>
@@ -42,7 +42,7 @@
             <!-- Multilingual Fields -->
             <div>
               <h2 class="tw-text-lg tw-font-semibold tw-mb-4">Multilingual Information</h2>
-              
+
               <!-- Title -->
               <div class="tw-mb-6">
                 <h3 class="tw-font-medium tw-mb-2">Title</h3>
@@ -54,7 +54,7 @@
                     :label="'Title (' + lang + ')'"
                     :hint="'Title in ' + lang"
                     persistent-hint
-                    :rules="[v => !!v || 'Title is required']"
+                    :rules="[(v) => !!v || 'Title is required']"
                   />
                 </div>
               </div>
@@ -123,21 +123,21 @@
                   :items="providerTypes"
                   hint="Data provider type"
                   persistent-hint
-                  :rules="[v => !!v || 'Provider type is required']"
+                  :rules="[(v) => !!v || 'Provider type is required']"
                 />
                 <v-text-field
                   v-model="formData.providers[0].name"
                   label="Provider Name"
                   hint="Name of the provider"
                   persistent-hint
-                  :rules="[v => !!v || 'Provider name is required']"
+                  :rules="[(v) => !!v || 'Provider name is required']"
                 />
                 <v-text-field
                   v-model="formData.providers[0].data"
                   label="Data Source"
                   hint="Path or connection string to data"
                   persistent-hint
-                  :rules="[v => !!v || 'Data source is required']"
+                  :rules="[(v) => !!v || 'Data source is required']"
                 />
               </div>
             </div>
@@ -196,18 +196,10 @@
               />
             </div>
             <div class="tw-flex tw-gap-2">
-              <v-btn
-                variant="tonal"
-                color="error"
-                @click="router.push('/resources')"
-              >
+              <v-btn variant="tonal" color="error" @click="router.push('/resources')">
                 Cancel
               </v-btn>
-              <v-btn
-                color="primary"
-                :disabled="!valid"
-                @click="saveResource"
-              >
+              <v-btn color="primary" :disabled="!valid" @click="saveResource">
                 Save Resource
               </v-btn>
             </div>
@@ -241,29 +233,23 @@ const editorContent = ref('')
 const languages = ['en', 'ar', 'bs', 'de', 'es', 'fr', 'sr']
 
 // New keywords input state
-const newKeywords = ref(Object.fromEntries(languages.map(lang => [lang, ''])))
+const newKeywords = ref(Object.fromEntries(languages.map((lang) => [lang, ''])))
 
-const providerTypes = [
-  'feature',
-  'coverage',
-  'tile',
-  'process',
-  'stac',
-  'record',
-  'collection'
-]
+const providerTypes = ['feature', 'coverage', 'tile', 'process', 'stac', 'record', 'collection']
 
 const formData = ref({
   id: '',
   type: 'collection',
-  title: Object.fromEntries(languages.map(lang => [lang, ''])),
-  description: Object.fromEntries(languages.map(lang => [lang, ''])),
-  keywords: Object.fromEntries(languages.map(lang => [lang, [] as string[]])),
-  providers: [{
-    type: '',
-    name: '',
-    data: ''
-  }]
+  title: Object.fromEntries(languages.map((lang) => [lang, ''])),
+  description: Object.fromEntries(languages.map((lang) => [lang, ''])),
+  keywords: Object.fromEntries(languages.map((lang) => [lang, [] as string[]])),
+  providers: [
+    {
+      type: '',
+      name: '',
+      data: '',
+    },
+  ],
 })
 
 const editorOptions = {
@@ -273,7 +259,7 @@ const editorOptions = {
   scrollBeyondLastLine: false,
   readOnly: false,
   fontSize: 14,
-  automaticLayout: true
+  automaticLayout: true,
 }
 
 const existingResources = computed(() => {
@@ -311,12 +297,11 @@ function handleEditorChange(value: string) {
 function updateEditorContent() {
   const content = {
     ...formData.value,
-    id: undefined // Remove id from the content
+    id: undefined, // Remove id from the content
   }
-  
-  editorContent.value = format.value === 'yaml' 
-    ? YAML.stringify(content)
-    : JSON.stringify(content, null, 2)
+
+  editorContent.value =
+    format.value === 'yaml' ? YAML.stringify(content) : JSON.stringify(content, null, 2)
 }
 
 function loadResource() {
@@ -324,8 +309,8 @@ function loadResource() {
     const resource = configStore.currentJson.resources[resourceId.value]
     if (resource) {
       // Initialize with default empty values for all supported languages
-      const defaultMultiLang = Object.fromEntries(languages.map(lang => [lang, '']))
-      const defaultKeywords = Object.fromEntries(languages.map(lang => [lang, [] as string[]]))
+      const defaultMultiLang = Object.fromEntries(languages.map((lang) => [lang, '']))
+      const defaultKeywords = Object.fromEntries(languages.map((lang) => [lang, [] as string[]]))
 
       formData.value = {
         id: resourceId.value,
@@ -333,11 +318,13 @@ function loadResource() {
         title: { ...defaultMultiLang, ...resource.title },
         description: { ...defaultMultiLang, ...resource.description },
         keywords: { ...defaultKeywords, ...resource.keywords },
-        providers: resource.providers || [{
-          type: '',
-          name: '',
-          data: ''
-        }]
+        providers: resource.providers || [
+          {
+            type: '',
+            name: '',
+            data: '',
+          },
+        ],
       }
       updateEditorContent()
     }
@@ -352,17 +339,17 @@ function saveResource() {
     title: formData.value.title,
     description: formData.value.description,
     keywords: formData.value.keywords,
-    providers: formData.value.providers
+    providers: formData.value.providers,
   }
 
   const newResources = {
     ...configStore.currentJson.resources,
-    [isNew.value ? formData.value.id : resourceId.value]: resourceData
+    [isNew.value ? formData.value.id : resourceId.value]: resourceData,
   }
 
   configStore.saveConfig({
     ...configStore.currentJson,
-    resources: newResources
+    resources: newResources,
   })
 
   router.push('/resources')
@@ -374,16 +361,24 @@ watch(format, () => {
 })
 
 // Watch for form data changes
-watch(formData, () => {
-  updateEditorContent()
-}, { deep: true })
+watch(
+  formData,
+  () => {
+    updateEditorContent()
+  },
+  { deep: true },
+)
 
 onMounted(() => {
   loadResource()
 })
 
 // Watch for store changes
-watch(() => configStore.currentJson, () => {
-  loadResource()
-}, { immediate: true })
+watch(
+  () => configStore.currentJson,
+  () => {
+    loadResource()
+  },
+  { immediate: true },
+)
 </script>

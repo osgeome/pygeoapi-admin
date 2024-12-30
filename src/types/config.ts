@@ -91,7 +91,7 @@ export interface MetadataConfig {
   }
 }
 
-/** Main PyGeoAPI configuration */
+/** Main pygeoapi configuration */
 export interface PyGeoApiConfig {
   server: ServerConfig
   logging: LoggingConfig

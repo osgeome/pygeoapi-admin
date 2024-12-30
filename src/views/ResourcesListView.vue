@@ -3,7 +3,7 @@
     <div class="tw-flex tw-justify-between tw-items-center tw-mb-8">
       <div>
         <h1 class="tw-text-3xl tw-font-light tw-mb-2">Resources</h1>
-        <p class="tw-text-gray-500 tw-text-sm">Manage your PyGeoAPI collections and processes</p>
+        <p class="tw-text-gray-500 tw-text-sm">Manage your pygeoapi collections and processes</p>
       </div>
       <v-btn
         color="primary"
@@ -20,8 +20,10 @@
       <v-progress-circular indeterminate color="primary" />
     </div>
 
-    <div v-else-if="Object.keys(resources).length === 0" 
-         class="tw-min-h-[400px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center">
+    <div
+      v-else-if="Object.keys(resources).length === 0"
+      class="tw-min-h-[400px] tw-flex tw-flex-col tw-justify-center tw-items-center tw-text-center"
+    >
       <v-icon size="64" class="tw-mb-4 tw-text-gray-300">mdi-database-off-outline</v-icon>
       <h3 class="tw-text-xl tw-font-light tw-mb-2">No resources yet</h3>
       <p class="tw-text-gray-500 tw-text-sm tw-mb-6">Get started by adding your first resource</p>
@@ -54,7 +56,7 @@
             >
               {{ resource?.type || 'Unknown' }}
             </v-chip>
-            
+
             <div class="tw-flex tw-gap-1">
               <v-btn
                 icon="mdi-pencil"
@@ -77,7 +79,10 @@
 
           <!-- Resource ID & Provider -->
           <div class="tw-mb-4">
-            <code class="tw-px-2 tw-py-1 tw-bg-gray-50 tw-rounded tw-text-sm tw-font-mono tw-text-gray-600">{{ id }}</code>
+            <code
+              class="tw-px-2 tw-py-1 tw-bg-gray-50 tw-rounded tw-text-sm tw-font-mono tw-text-gray-600"
+              >{{ id }}</code
+            >
             <div v-if="resource?.provider?.type" class="tw-mt-2">
               <span class="tw-text-sm tw-text-gray-500">Provider: </span>
               <span class="tw-text-sm tw-font-medium">{{ resource.provider.type }}</span>
@@ -115,7 +120,7 @@
 
         <!-- Links -->
         <v-divider v-if="resource?.links?.length"></v-divider>
-        
+
         <div v-if="resource?.links?.length" class="tw-px-4 tw-py-3 tw-bg-gray-50">
           <div class="tw-flex tw-flex-wrap tw-gap-2">
             <v-btn
@@ -144,20 +149,8 @@
         </v-card-text>
         <v-card-actions class="tw-p-4">
           <v-spacer></v-spacer>
-          <v-btn
-            color="gray"
-            variant="text"
-            @click="showDeleteDialog = false"
-          >
-            Cancel
-          </v-btn>
-          <v-btn
-            color="error"
-            variant="flat"
-            @click="deleteResource"
-          >
-            Delete
-          </v-btn>
+          <v-btn color="gray" variant="text" @click="showDeleteDialog = false"> Cancel </v-btn>
+          <v-btn color="error" variant="flat" @click="deleteResource"> Delete </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -223,13 +216,13 @@ function deleteResource() {
   if (configStore.currentJson?.resources) {
     const newResources = { ...configStore.currentJson.resources }
     delete newResources[resourceToDelete.value]
-    
+
     configStore.saveConfig({
       ...configStore.currentJson,
-      resources: newResources
+      resources: newResources,
     })
   }
-  
+
   showDeleteDialog.value = false
   resourceToDelete.value = ''
 }

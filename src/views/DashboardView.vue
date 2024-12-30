@@ -1,8 +1,8 @@
 <template>
   <div class="tw-p-6">
     <div class="tw-mb-6">
-      <h1 class="tw-text-2xl tw-font-semibold">PyGeoAPI Configuration Dashboard</h1>
-      <p class="tw-text-gray-600">Manage your PyGeoAPI configuration</p>
+      <h1 class="tw-text-2xl tw-font-semibold">pygeoapi Configuration Dashboard</h1>
+      <p class="tw-text-gray-600">Manage your pygeoapi configuration</p>
     </div>
 
     <!-- Configuration Overview -->
@@ -77,12 +77,7 @@
         </v-card-title>
         <v-card-text>
           <div class="tw-space-y-4">
-            <v-btn
-              block
-              :loading="syncing"
-              prepend-icon="mdi-sync"
-              @click="syncWithServer"
-            >
+            <v-btn block :loading="syncing" prepend-icon="mdi-sync" @click="syncWithServer">
               Sync with Server
             </v-btn>
             <v-btn
